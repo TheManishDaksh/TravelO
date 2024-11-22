@@ -1,38 +1,14 @@
 
 const express = require("express")
 const router = express.Router();
-const wishlist = require("../model/wishlistModel")
-const verifyUser = require("../middleware/verifyUser")
 
-router.route('/').post(verifyUser, async(req,res)=>{
-    const newWishlist = new wishlist(req.body);
-    try {
-        const savedWishlist = await newWishlist.save();
-        res.status(201).json(savedWishlist);
-    }catch(err){
-        console.log(err);
-        res.status(500  ).json({message : "failed to create wishlist"})
-    }
-})
+const verifyUser = require("../middleware/verifyUser");
+const { createWishList, deleteWishList, findWishlist } = require("../controller/wishlistcontroller");
 
-router.route('/:id').delete( verifyUser, async(req,res)=>{
-    try{
-       await wishlist.findByIdAndDelete(req.params.id)
-        res.json({message : "wishlist deleted"})
-    }catch(err){
-        console.log(err);
-        res.status(500).json({message : "can not delete the wishlist"})
-    }
-})
+router.route('/').post(verifyUser, createWishList)
 
-router.route('/').get(verifyUser, async(req,res)=>{
-    try{
-        const findWishlist = await wishlist.find({})
-        res.json(findWishlist);
-    }catch(err){
-        console.log(err);
-        res.status(500).json({message : "can't find wishlist"})
-    }
-})
+router.route('/:id').delete( verifyUser, deleteWishList)
 
-module.exports = router;
+router.route('/').get(verifyUser, findWishlist)
+
+module.exports = router;    

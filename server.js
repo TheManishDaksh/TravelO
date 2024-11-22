@@ -1,8 +1,9 @@
 
 const express = require ("express");
 const app = express();
-const hotelrouter = require("../TravelO/Router/hotelrouter")
 const mongoose = require("mongoose")
+
+const hotelrouter = require("../TravelO/Router/hotelrouter")
 const connectDB = require("../TravelO/config/dbconfig")
 const importHotelData = require("../TravelO/Router/dataImport")
 const importCategoryData = require("../TravelO/Router/categoryImport")
