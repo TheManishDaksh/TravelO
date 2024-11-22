@@ -9,6 +9,7 @@ const importCategoryData = require("../TravelO/Router/categoryImport")
 const importCategory = require("../TravelO/Router/categoryRouter")
 const singleHotel = require("../TravelO/Router/singleHotelRouter")
 const userAuth = require("../TravelO/Router/auth")
+const wishlist = require("../TravelO/Router/wishlistRouter")
 
 app.use(express.json());
 connectDB();
@@ -22,6 +23,7 @@ app.use('/categoryData', importCategoryData);
 app.use('/category', importCategory);    
 app.use('/hotels', singleHotel);
 app.use('/auth', userAuth);
+app.use('/wishlist', wishlist);
 
 mongoose.connection.once("open", () => {
     console.log("Connected to DB");
