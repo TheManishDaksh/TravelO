@@ -2,8 +2,9 @@
 const express = require("express")
 const router = express.Router();
 const wishlist = require("../model/wishlistModel")
+const verifyUser = require("../middleware/verifyUser")
 
-router.route('/').post(async(req,res)=>{
+router.route('/').post(verifyUser, async(req,res)=>{
     const newWishlist = new wishlist(req.body);
     try {
         const savedWishlist = await newWishlist.save();
@@ -14,7 +15,7 @@ router.route('/').post(async(req,res)=>{
     }
 })
 
-router.route('/:id').delete(async(req,res)=>{
+router.route('/:id').delete( verifyUser, async(req,res)=>{
     try{
        await wishlist.findByIdAndDelete(req.params.id)
         res.json({message : "wishlist deleted"})
@@ -24,7 +25,7 @@ router.route('/:id').delete(async(req,res)=>{
     }
 })
 
-router.route('/').get(async(req,res)=>{
+router.route('/').get(verifyUser, async(req,res)=>{
     try{
         const findWishlist = await wishlist.find({})
         res.json(findWishlist);
@@ -34,4 +35,4 @@ router.route('/').get(async(req,res)=>{
     }
 })
 
-module.exports = router
+module.exports = router;
