@@ -8,6 +8,7 @@ const modelHotel = require("../model/hotelModel");
 router.route('/')
 .post( async (req,res) =>{
         try{
+            await modelHotel.remove();
         const importData = await modelHotel.insertMany(Hotels.data);
         res.json(importData)
     }catch(err){

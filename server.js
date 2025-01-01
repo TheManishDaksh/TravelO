@@ -18,19 +18,16 @@ connectDB();
 app.get('/', (req,res)=>{
     res.send("hello everyone");
 })
-app.use('/hotels' , hotelrouter);
-app.use('/hotelData', importHotelData);
-app.use('/categoryData', importCategoryData);
-app.use('/category', importCategory);    
-app.use('/hotels', singleHotel);
-app.use('/auth', userAuth);
-app.use('/wishlist', wishlist);
+app.use('/api/hotels' , hotelrouter);
+app.use('/api/hotelData', importHotelData);
+app.use('/api/categoryData', importCategoryData);
+app.use('/api/category', importCategory);    
+app.use('/api/hotels', singleHotel);
+app.use('/api/auth', userAuth);
+app.use('/api/wishlist', wishlist);
 
 mongoose.connection.once("open", () => {
     console.log("Connected to DB");
-});
-mongoose.connection.on("error", (err) => {
-    console.error("Database connection error:", err);
 });
 
 app.listen(3000);
