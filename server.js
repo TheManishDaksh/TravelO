@@ -1,6 +1,7 @@
 const express = require ("express");
 const app = express();
 const mongoose = require("mongoose")
+import cors from "cors"
 
 const hotelrouter = require("../TravelO/Router/hotelrouter")
 const connectDB = require("../TravelO/config/dbconfig")
@@ -11,6 +12,7 @@ const singleHotel = require("../TravelO/Router/singleHotelRouter")
 const userAuth = require("../TravelO/Router/auth")
 const wishlist = require("../TravelO/Router/wishlistRouter")
 
+app.use(cors());
 app.use(express.json());
 connectDB();
 
