@@ -1,14 +1,13 @@
+import Hotel from "../model/hotelModel.js"
 
-const hotels = require("../model/hotelModel");
-
-const singleHotelHandler = async (req,res)=>{
+ const singleHotelHandler = async (req,res)=>{
     try{
         const {id} = req.params;
-        const singleHotel = await hotels.findById(id);
+        const singleHotel = await Hotel.findById(id);
     res.json(singleHotel);
     }catch(err){
         console.log(err);
     }
 }
 
-module.exports = singleHotelHandler;
+export default singleHotelHandler

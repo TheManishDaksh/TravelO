@@ -1,8 +1,7 @@
-
-const wishlist = require("../model/wishlistModel")
+import Wishlist from "../model/wishlistModel.js"
 
 const createWishList = async(req,res)=>{
-    const newWishlist = new wishlist(req.body);
+    const newWishlist = new Wishlist(req.body);
     try {
         const savedWishlist = await newWishlist.save();
         res.status(201).json(savedWishlist);
@@ -14,7 +13,7 @@ const createWishList = async(req,res)=>{
 
 const deleteWishList = async(req,res)=>{
     try{
-       await wishlist.findByIdAndDelete(req.params.id)
+       await Wishlist.findByIdAndDelete(req.params.id)
         res.json({message : "wishlist deleted"})
     }catch(err){
         console.log(err);
@@ -24,12 +23,11 @@ const deleteWishList = async(req,res)=>{
 
 const findWishlist = async(req,res)=>{
     try{
-        const findWishlist = await wishlist.find({})
+        const findWishlist = await Wishlist.find({})
         res.json(findWishlist);
     }catch(err){
         console.log(err);
         res.status(500).json({message : "can't find wishlist"})
     }
 }
-
-module.exports = {createWishList, deleteWishList, findWishlist}
+export {createWishList, deleteWishList, findWishlist}

@@ -1,13 +1,13 @@
-const hotel = require("../model/hotelModel");
+import Hotel from "../model/hotelModel.js";
 
-const allHotelHandler = async (req,res)=>{
+ const allHotelHandler = async (req,res)=>{
     const hotelCategory = req.query.category;
     try{
         let hotels;
         if(hotelCategory){
-            hotels = await hotel.find({category : hotelCategory})
+            hotels = await Hotel.find({category : hotelCategory})
         }else{
-            hotels = await hotel.find({});
+            hotels = await Hotel.find({});
         }
          
         hotels? res.json(hotels) : res.status(404).json({message : "data not found"})
@@ -16,4 +16,4 @@ const allHotelHandler = async (req,res)=>{
     }
 }
 
-module.exports = allHotelHandler;
+export default allHotelHandler

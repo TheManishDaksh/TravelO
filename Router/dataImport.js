@@ -1,15 +1,14 @@
-
-const express = require('express');
+import express from "express"
 const router = express.Router();
 
-const Hotels = require("../data/hotels");
-const modelHotel = require("../model/hotelModel");
+import hotels from "../data/hotels.js"
+import Hotel from "../model/hotelModel.js"
 
 router.route('/')
 .post( async (req,res) =>{
         try{
-            await modelHotel.remove();
-        const importData = await modelHotel.insertMany(Hotels.data);
+            await Hotel.remove();
+        const importData = await Hotel.insertMany(hotels.data);
         res.json(importData)
     }catch(err){
         console.log(err);
@@ -18,4 +17,4 @@ router.route('/')
 }
 )
 
-module.exports = router
+export default router

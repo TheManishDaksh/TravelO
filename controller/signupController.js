@@ -1,5 +1,4 @@
-
-const User = require("../model/userModel")
+import User from "../model/userModel.js"
 
 const signupHandler = (async (req,res)=>{
     try{
@@ -9,6 +8,7 @@ const signupHandler = (async (req,res)=>{
                 mobileNumber : req.body.mobileNumber,
                 password : req.body.password}
         )
+       
         const savedUser = await newUser.save();
         res.status(202).json(savedUser);
     }catch(err){
@@ -17,4 +17,4 @@ const signupHandler = (async (req,res)=>{
     }
 })
 
-module.exports = signupHandler
+export default signupHandler

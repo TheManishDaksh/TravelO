@@ -1,7 +1,7 @@
 
-const { v4: uuid } = require('uuid');
+import { v4 as uuid } from 'uuid';
 
-const hotels = {
+ const hotels = {
     "data": [
         {
             id: uuid(),
@@ -209,7 +209,7 @@ const hotels = {
             id: uuid(),
             name: "Adobe 2 by The Mudhouse Marayoor",
             category: "National Parks",
-            image: "https://a0.muscache.com/im/pictures/miso/Hosting-23795589/original/706ffee7-faaa-4d83-8ad3-e6541198750a.jpeg?im_w=1200",
+            image: "https://a0.muscache.com/im/pictures/miso/Hosting-23795589/original/706ffee7-faaa-4d83-8ad3-e6541198750a.jpeg?im_w=720",
             imageArr: ["https://a0.muscache.com/im/pictures/3f524723-b711-45e0-b75e-a1b66283da14.jpg?im_w=720", "https://a0.muscache.com/im/pictures/miso/Hosting-23795589/original/4bcf0213-c10e-4075-be14-0c0de7b885f4.jpeg?im_w=720", "https://a0.muscache.com/im/pictures/miso/Hosting-23795589/original/0b49d6ee-913d-4b5f-9616-ab84b62f75d5.png?im_w=720", "https://a0.muscache.com/im/pictures/miso/Hosting-23795589/original/98aec13a-0a53-48e9-86a0-844ac55653a3.jpeg?im_w=720"],
             address: "Munnar",
             city: "Munnar",
@@ -908,4 +908,4 @@ const hotels = {
     ]
 }
 
-module.exports = hotels;
+export default hotels

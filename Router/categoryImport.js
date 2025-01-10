@@ -1,15 +1,13 @@
-
-
-const express = require('express');
+import express from "express"
 const router = express.Router();
 
-const category = require("../data/category");
-const modelCategory = require("../model/categoryModel");
+import categories from "../data/category.js"
+import categoryModel from "../model/categoryModel.js"
 
 router.route('/')
 .post( async (req,res) =>{
         try{
-        const categoryInDB = await modelCategory.insertMany(category.data);
+        const categoryInDB = await categoryModel.insertMany(categories.data);
         res.json(categoryInDB)
     }catch(err){
         console.log(err);
@@ -18,4 +16,4 @@ router.route('/')
 }
 )
 
-module.exports = router
+export default router

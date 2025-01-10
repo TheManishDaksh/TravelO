@@ -1,17 +1,15 @@
-
-const express = require('express');
+import express from "express"
 const router = express.Router();
-
-const category = require("../model/categoryModel");
+import categoryModel from "../model/categoryModel.js"
 
 router.route('/')
 .get(async(req,res)=>{
     try{
-        const categoriesInDB = await category.find({});
+        const categoriesInDB = await categoryModel.find({});
         res.json(categoriesInDB);
     }catch(err){
         console.log(err);
     }
 })
 
-module.exports = router
+export default router
