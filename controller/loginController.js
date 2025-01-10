@@ -6,14 +6,13 @@ const loginHandler = async (req, res) => {
     const { mobileNumber, password } = req.body;
 
     try {
-        // Check if required fields are provided
+
         if (!mobileNumber || !password) {
             return res.status(400).json({ 
                 message: "Mobile number and password are required" 
             });
         }
 
-        // Find user by mobile number
         const user = await User.findOne({ mobileNumber });
         
         if (!user) {
@@ -22,7 +21,6 @@ const loginHandler = async (req, res) => {
             });
         }
 
-        // Compare password
         const isPasswordValid = await bcrypt.compare(password, user.password);
         
         if (!isPasswordValid) {
@@ -31,7 +29,6 @@ const loginHandler = async (req, res) => {
             });
         }
 
-        // Create JWT token
         const token = jwt.sign(
             { 
                 userId: user._id,
@@ -42,7 +39,6 @@ const loginHandler = async (req, res) => {
             { expiresIn: '24h' }
         );
 
-        // Remove password from response
         const { password: _, ...userWithoutPassword } = user._doc;
 
         res.status(200).json({

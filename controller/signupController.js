@@ -6,21 +6,7 @@ const signupHandler = async (req, res) => {
     const { username, email, mobileNumber, password } = req.body;
 
     try {
-        // Check if user already exists
-        const existingUser = await User.findOne({ 
-            $or: [
-                { email },
-                { mobileNumber }
-            ]
-        });
-
-        if (existingUser) {
-            return res.status(409).json({ 
-                message: "User already exists with this email or mobile number" 
-            });
-        }
-
-        // Hash password
+        
         const hashedPassword = await bcrypt.hash(password, saltRounds);
 
         const newUser = new User({
@@ -32,7 +18,6 @@ const signupHandler = async (req, res) => {
        
         const savedUser = await newUser.save();
         
-        // Don't send password back in response
         const { password: _, ...userWithoutPassword } = savedUser._doc;
         
         res.status(201).json({
